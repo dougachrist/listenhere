@@ -1,0 +1,24 @@
+header{
+  color: whitesmoke;
+  text-align: center;
+  background: #444;
+  padding: 2em;
+}
+
+header h1 {
+  font-size: 3em;
+}
+
+header ul {
+  margin-top: 1em;
+}
+
+header li {
+  margin: 2em;
+  display: inline;
+}
+
+#map {
+  width: 500px;
+  height: 500px;
+}

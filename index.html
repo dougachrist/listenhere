@@ -11,10 +11,37 @@
   </head>
   <body>
     <header>
+      <h1>Listen Here</h1>
+      <nav>
+        <ul>
+          <li>home</li>
+          <li>playlist</li>
+          <li>contact</li>
+        </ul>
+      </nav>
     </header>
     <main>
       <section>
         <h1>This is a website!</h1>
+        <h1>song 1:</h1>
+        <a href="https://www.youtube.com/watch?v=J9HKqYP0c-8">on my mind</a>
+        <h1>song 2:</h1>
+        <a href="https://www.youtube.com/watch?v=-AMc7KPOkbY">lean on</a>
+
+      </section>
+      <section>
+        <form>
+          <formfield>
+            <input id="zip" value="93105"/>
+            <button type="submit" value="Enter">Enter</button>
+          <formfield>
+        </form>
+
+
+        <h1>MAP</h1>
+        <div id="map">
+
+        </div>
       </section>
     </main>
     <footer>
@@ -24,5 +51,9 @@
     <script src="vendor/scripts/handlebars-v4.0.5.js"></script>
     <script src="scripts/model/app.js"></script>
     <script src="scripts/controller/router.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=initMap">
+    </script>
+    <script src="scripts/model/api.js"></script>
   </body>
 </html>
