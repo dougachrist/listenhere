@@ -1,6 +1,9 @@
 var map;
 var pos;
-var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+var im = '/img/bluecircle.png';
+var markerCount = 0;
+var allMarkers = [];
+var currMarker;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.4201103, lng: -119.7020492},
@@ -24,7 +27,6 @@ function initMap() {
       map.setCenter(pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
-      console.log('what');
     });
   } else {
 // Browser doesn't support Geolocation
@@ -38,25 +40,6 @@ function initMap() {
   'Error: Your browser doesn\'t support geolocation.');
   }
 
-  // var drawingManager = new google.maps.drawing.DrawingManager({
-  //   drawingMode: google.maps.drawing.OverlayType.MARKER,
-  //   drawingControl: true,
-  //   drawingControlOptions: {
-  //     position: google.maps.ControlPosition.TOP_CENTER,
-  //     drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-  //   },
-  //   markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-  //   circleOptions: {
-  //     fillColor: '#ffff00',
-  //     fillOpacity: 1,
-  //     strokeWeight: 5,
-  //     clickable: false,
-  //     editable: true,
-  //     zIndex: 1
-  //   }
-  // });
-  // drawingManager.setMap(map);
-
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(function(position) {
       var currLatitude = position.coords.latitude;
@@ -64,7 +47,7 @@ function initMap() {
       var accuracy = position.coords.accuracy;
       var coords = new google.maps.LatLng(currLatitude, currLongitude);
 
-      var marker = new google.maps.Marker({
+      currMarker = new google.maps.Marker({
         position: coords,
         map: map,
         icon: im
@@ -83,13 +66,48 @@ function initMap() {
     draggable: true
   });
 
-  // var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
   var userMarker = new google.maps.Marker({
     position: new google.maps.LatLng(34.8848, -119.502),
     map: map,
     icon: im
   });
 
-  marker.setMap(map);
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+  });
+
+  function placeMarker(location) {
+    if(markerCount < 2){
+      markerCount++;
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        draggable: true,
+        title: 'song ' + markerCount,
+        store_id: markerCount,
+        currLat: location.lat(),
+        currLng: location.lng()
+      });
+      allMarkers.push(marker);
+      marker.setMap(map);
+    } else {
+      alert('too many markers, please remove one');
+    }
+  }
+}
+
+$('#getButton').on('click', calculateDiff);
+
+function calculateDiff() {
+  console.log(currMarker.position.lat());
+  console.log(currMarker.position.lng());
+  console.log(allMarkers[0].position.lat());
+  console.log(allMarkers[0].position.lng());
+
+  console.log(distance(currMarker.position.lat(), currMarker.position.lng(), allMarkers[0].position.lat(), allMarkers[0].position.lng()));
+
+  if(distance(currMarker.position.lat(), currMarker.position.lng(), allMarkers[0].position.lat(), allMarkers[0].position.lng()) < .3){
+    $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1');
+  }
 }

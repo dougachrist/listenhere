@@ -4,6 +4,8 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   app = express();
 
+var gapi = '"https://maps.googleapis.com/' + process.env.GOOGLE_API_KEY + '&callback=initMap"';
+
 var proxyGoogleAPI = function(request, response) {
   console.log('routing Google API request for', request.params[0]);
   (

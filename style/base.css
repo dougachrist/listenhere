@@ -22,3 +22,8 @@ header li {
   width: 500px;
   height: 500px;
 }
+
+iframe {
+  height: 50px;
+  width: 50px;
+}
