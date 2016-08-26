@@ -30,29 +30,35 @@
 
       </section>
       <section>
+        <iframe id="player"></iframe>
+      </section>
+      <section>
         <form>
           <formfield>
             <input id="zip" value="93105"/>
             <button type="submit" value="Enter">Enter</button>
           <formfield>
         </form>
-
-
         <h1>MAP</h1>
-        <div id="map">
-
-        </div>
+        <div id="map"></div>
+      </section>
+      <section>
+        <h1>distance to next pin</h1>
+        <div id="distanceTO"></div>
+        <button id="getButton">Find Distance</button>
       </section>
     </main>
     <footer>
     </footer>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="vendor/scripts/page.js"></script>
     <script src="vendor/scripts/jquery-1.12.4.min.js"></script>
     <script src="vendor/scripts/handlebars-v4.0.5.js"></script>
+    <script src="findDist.js"></script>
     <script src="scripts/model/app.js"></script>
     <script src="scripts/controller/router.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initMap">
     </script>
     <script src="scripts/model/api.js"></script>
   </body>

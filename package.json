@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/dougachrist/listenhere/issues"
   },
-  "homepage": "https://github.com/dougachrist/listenhere#readme"
+  "homepage": "https://github.com/dougachrist/listenhere#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-request-proxy": "^2.0.0"
+  },
+  "devDependencies": {}
 }
