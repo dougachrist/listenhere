@@ -4,6 +4,7 @@ var im = '/img/bluecircle.png';
 var markerCount = 0;
 var allMarkers = [];
 var currMarker = {};
+var marker;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.4201103, lng: -119.7020492},
@@ -55,24 +56,18 @@ function initMap() {
         map: map,
         icon: im
       });
+
+      $()
+
+      function whatPinIsCloser(){
+        var x = calculateDiff();
+
+      }
+
     },function error(msg){alert('Please enable your GPS position future.');
 
     }, {maximumAge:0, timeout:Infinity, enableHighAccuracy: true});
   }
-
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(34.8848, -119.602),
-    map: map,
-    title: 'song #1',
-    animation: google.maps.Animation.DROP,
-    draggable: true
-  });
-
-  var userMarker = new google.maps.Marker({
-    position: new google.maps.LatLng(34.8848, -119.502),
-    map: map,
-    icon: im
-  });
 
   google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(event.latLng);
@@ -81,7 +76,7 @@ function initMap() {
   function placeMarker(location) {
     if(markerCount < 2){
       markerCount++;
-      var marker = new google.maps.Marker({
+      marker = new google.maps.Marker({
         position: location,
         map: map,
         animation: google.maps.Animation.DROP,
@@ -91,6 +86,12 @@ function initMap() {
         currLat: location.lat(),
         currLng: location.lng()
       });
+      if(markerCount === 1){
+        $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1');
+      }
+      if(markerCount === 2){
+        $('iframe').contents().click();
+      }
       allMarkers.push(marker);
       marker.setMap(map);
     } else {

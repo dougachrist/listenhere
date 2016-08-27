@@ -19,12 +19,22 @@ header li {
 }
 
 #map {
-  width: 200px;
-  height: 200px;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
 }
 
 iframe {
+  margin: 0 auto;
   height: 150px;
   width: 150px;
+  border: 1px solid black;
+}
+
+#playerSection {
+  text-align: center;
+}
+
+input {
   border: 1px solid black;
 }
