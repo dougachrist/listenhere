@@ -46,7 +46,7 @@ function initMap() {
       var currLongitude = position.coords.longitude;
       var accuracy = position.coords.accuracy;
       var coords = new google.maps.LatLng(currLatitude, currLongitude);
-
+      console.log('new position');
       currMarker = new google.maps.Marker({
         position: coords,
         map: map,
@@ -54,8 +54,7 @@ function initMap() {
       });
     },function error(msg){alert('Please enable your GPS position future.');
 
-    }, {maximumAge:0, timeout:Infinity, enableHighAccuracy: false});
-
+    }, {maximumAge:0, timeout:Infinity, enableHighAccuracy: true});
   }
 
   var marker = new google.maps.Marker({
