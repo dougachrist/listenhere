@@ -5,6 +5,9 @@ var markerCount = 0;
 var allMarkers = [];
 var currMarker = {};
 var marker;
+var x;
+var y;
+var song = true;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.4201103, lng: -119.7020492},
@@ -57,11 +60,22 @@ function initMap() {
         icon: im
       });
 
-      $()
+      if(allMarkers[0]) {
+        x = distance(currMarker.position.lat(), currMarker.position.lng(), allMarkers[0].position.lat(), allMarkers[0].position.lng());
+      }
 
-      function whatPinIsCloser(){
-        var x = calculateDiff();
+      if(allMarkers[1]) {
+        y = distance(currMarker.position.lat(), currMarker.position.lng(), allMarkers[1].position.lat(), allMarkers[1].position.lng());
+      }
 
+      if(allMarkers[0] && allMarkers[1] && song) {
+        if (x < y) {
+          song = false;
+          $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1');
+        } else {
+          song = false;
+          $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1');
+        }
       }
 
     },function error(msg){alert('Please enable your GPS position future.');
@@ -86,12 +100,6 @@ function initMap() {
         currLat: location.lat(),
         currLng: location.lng()
       });
-      if(markerCount === 1){
-        $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1');
-      }
-      if(markerCount === 2){
-        $('iframe').contents().click();
-      }
       allMarkers.push(marker);
       marker.setMap(map);
     } else {
