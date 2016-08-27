@@ -3,7 +3,7 @@ var pos;
 var im = '/img/bluecircle.png';
 var markerCount = 0;
 var allMarkers = [];
-var currMarker;
+var currMarker = {};
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.4201103, lng: -119.7020492},
@@ -47,6 +47,9 @@ function initMap() {
       var accuracy = position.coords.accuracy;
       var coords = new google.maps.LatLng(currLatitude, currLongitude);
       console.log('new position');
+      if(currMarker.position){
+        currMarker.setMap(null);
+      }
       currMarker = new google.maps.Marker({
         position: coords,
         map: map,
