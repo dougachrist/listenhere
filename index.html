@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/module.css">
+    <script id="song-template" type="text/x-handlebars-template">
+      <section class="songNames">
+      <h1>{{songName}}</h1>
+    </section>
+    </script>
   </head>
   <body>
     <header>
@@ -21,25 +26,25 @@
       </nav>
     </header>
     <main>
-      <div id="map"></div>
-      <section>
-        <h1>Add your YouTube playlist</h1>
-        <input type="text">
-        <button id="YTButton">Find Song</button>
-      </section>
-      <section>
-        <h1>Drop Pin for Song 1</h1>
-      </section>
-      <section id="playerSection">
-        <iframe webkit-playsinline id="player"></iframe>
-        <div id="video-placeholder"></div>
-      </section>
-      <section>
-      </section>
-      <section>
-        <h1>distance to next pin</h1>
-        <div id="distanceTO"></div>
-        <button id="getButton">Update Song</button>
+      <section class="mapView">
+        <div id="map"></div>
+        <section>
+          <h1>Add your YouTube playlist</h1>
+          <input type="text">
+          <button id="YTButton">Find Song</button>
+        </section>
+        <section>
+          <h1>Drop Pin for Song 1</h1>
+        </section>
+        <section id="playerSection">
+          <iframe webkit-playsinline id="player"></iframe>
+          <div id="video-placeholder"></div>
+        </section>
+        <section>
+          <h1>distance to next pin</h1>
+          <div id="distanceTO"></div>
+          <button id="getButton">Update Song</button>
+        </section>
       </section>
     </main>
     <footer>
@@ -51,6 +56,9 @@
     <script src="vendor/scripts/handlebars-v4.0.5.js"></script>
     <script src="findDist.js"></script>
     <script src="scripts/models/createMap.js"></script>
+    <script src="scripts/views/homeView.js"></script>
+    <script src="scripts/views/addMarkersView.js"></script>
+    <script src="scripts/controllers/homeController.js"></script>
     <script src="scripts/controllers/youTubePlayer.js"></script>
     <script src="scripts/controllers/addMarkers.js"></script>
     <script src="scripts/controllers/router.js"></script>

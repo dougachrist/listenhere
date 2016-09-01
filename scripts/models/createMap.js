@@ -29,7 +29,7 @@
         };
         createMap.map.setCenter(createMap.pos);
         if(createMap.song){
-          createMap.updatePositionSong(); // do I want to run this??
+          createMap.updatePositionSong();
         }
       }, function() {
         createMap.handleLocationError(true, infoWindow, map.getCenter());
@@ -90,6 +90,16 @@
     'Error: The Geolocation service failed.' :
     'Error: Your browser doesn\'t support geolocation.');
   };
+
+// template for adding songs
+  createMap.markerObj = {};
+
+  for(var i = 0; i < 3; i++ ) { //run this for the length of the song name array
+    createMap.markerObj.songName = 'this song ' + i;
+    var template = Handlebars.compile($('#song-template').text());
+    var renderSongNames = template(createMap.markerObj);
+    $('main').append(renderSongNames);
+  }
 
   module.createMap = createMap;
 })(window);
