@@ -64,12 +64,14 @@
 
         y = distance(createMap.currMarker.position.lat(), createMap.currMarker.position.lng(), createMap.allMarkers[1].position.lat(), createMap.allMarkers[1].position.lng());
 
-        if (x < y) {
-          createMap.song = false;
-          $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
-        } else {
-          createMap.song = false;
-          $('iframe').attr('src', 'https://www.youtube.com/embed/D70UT2wUnoM?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
+        if(createMap.song) {
+          if (x < y) {
+            createMap.song = false;
+            $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
+          } else {
+            createMap.song = false;
+            $('iframe').attr('src', 'https://www.youtube.com/embed/D70UT2wUnoM?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
+          }
         }
       }
 
