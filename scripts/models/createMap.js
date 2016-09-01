@@ -28,7 +28,9 @@
           lng: position.coords.longitude
         };
         createMap.map.setCenter(createMap.pos);
-        createMap.updatePositionSong(); // do I want to run this??
+        if(createMap.song){
+          createMap.updatePositionSong(); // do I want to run this??
+        }
       }, function() {
         createMap.handleLocationError(true, infoWindow, map.getCenter());
       });
