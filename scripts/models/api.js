@@ -12,3 +12,9 @@ getLatLng = function(zipCode) {
     }
   });
 };
+
+getYT = function(){
+  $.getJSON('https://www.googleapis.com/youtube/v3/PLzhYNDOu3MSzPJHlvBnkq-oePCDARvb5u?v=2&alt=json&callback=?', function(data) {
+    console.log(data);
+  });
+};

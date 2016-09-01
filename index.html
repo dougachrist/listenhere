@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Listen Here</title>
-    <link rel="stylesheet" href="vendor/style/reset.css">
+    <link rel="stylesheet" href="vendor/styles/reset.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/layout.css">
-    <link rel="stylesheet" href="style/module.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/module.css">
   </head>
   <body>
     <header>
@@ -23,38 +23,40 @@
     <main>
       <div id="map"></div>
       <section>
-        <form>
-
-        <h1>select song 1:</h1>
-        <input type="text" id="song1">
-        <h1>select song 2:</h1>
-        <a href="https://www.youtube.com/watch?v=-AMc7KPOkbY">lean on</a>
-
-      </form>
+        <h1>Add your YouTube playlist</h1>
+        <input type="text">
+        <button id="YTButton">Find Song</button>
+      </section>
+      <section>
+        <h1>Drop Pin for Song 1</h1>
       </section>
       <section id="playerSection">
         <iframe id="player"></iframe>
+        <div id="video-placeholder"></div>
       </section>
       <section>
       </section>
       <section>
         <h1>distance to next pin</h1>
         <div id="distanceTO"></div>
-        <button id="getButton">Find Distance</button>
+        <button id="getButton">Update Song</button>
       </section>
     </main>
     <footer>
     </footer>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="scripts/models/api.js"></script>
     <script src="vendor/scripts/page.js"></script>
     <script src="vendor/scripts/jquery-1.12.4.min.js"></script>
     <script src="vendor/scripts/handlebars-v4.0.5.js"></script>
     <script src="findDist.js"></script>
-    <script src="scripts/model/app.js"></script>
-    <script src="scripts/controller/router.js"></script>
+    <script src="scripts/models/createMap.js"></script>
+    <script src="scripts/controllers/youTubePlayer.js"></script>
+    <script src="scripts/controllers/addMarkers.js"></script>
+    <script src="scripts/controllers/router.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=createMap.initMap">
     </script>
-    <script src="scripts/model/api.js"></script>
+    <script src="scripts/models/api.js"></script>
   </body>
 </html>
