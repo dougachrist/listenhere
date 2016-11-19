@@ -5,15 +5,14 @@
   // $('#getButton').on('click', createMap.updatePositionSong);
 
   addMarkers.placeMarker = function(location) {
-    if(createMap.markerCount < 2){
-      createMap.markerCount++;
+    if(createMap.markerCount < songsArray.length){
       createMap.marker = new google.maps.Marker({
         position: location,
         map: createMap.map,
         animation: google.maps.Animation.DROP,
         draggable: true,
         snippet: 'this is a snip',
-        title: 'song ' + createMap.markerCount,
+        title: songsArray[createMap.markerCount],
         store_id: createMap.markerCount,
         currLat: location.lat(),
         currLng: location.lng()
@@ -23,6 +22,7 @@
       createMap.marker.addListener('click', function(event){
         console.log(this.title);
       });
+      createMap.markerCount++;
     } else {
       alert('too many markers, please remove one');
     }

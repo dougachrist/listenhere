@@ -1,9 +1,11 @@
+var songsArray = [];
+
 onYouTubeIframeAPIReady = function() {
   player = new YT.Player('video-placeholder', {
     width: 600,
     height: 400,
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
       controls: 0,
       rel: 0,
       modestbranding: 1,
@@ -19,7 +21,7 @@ onYouTubeIframeAPIReady = function() {
 };
 
 onPlayerReady = function(event) {
-  event.target.cuePlaylist({list:'PL9343587B2BB7A6CD',
+  event.target.cuePlaylist({list:homeView.userPlaylist,
   listType:'playlist',
   index:0});
 };
@@ -40,43 +42,24 @@ function onPlayerStateChange(event) {
 }
 
 function namesArray(data){
-  console.log(data.length);
+  var gapi = 'AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs';
   data.forEach(function(songID){
-    console.log(songID);
-
-    $.getJSON('https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=' + songID + '&format=json',function(data,status,xhr){
-      alert(data.data.title);
-    // data contains the JSON-Object below
+    $.getJSON('https://www.googleapis.com/youtube/v3/videos?id=' + songID + '&key=' + gapi + '&part=snippet',function(data,status,xhr){
+      songsArray.push(data.items[0].snippet.title);
+    }).done(function(){
+      if(songsArray.length === data.length){
+        console.log(songsArray);
+        var url2 = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=createMap.initMap';
+        $.getScript(url2, function(){
+          console.log('map api running');
+        });
+        // page('/markers');
+      }
     });
   });
-// move this up
-  // var playListURL = 'http://gdata.youtube.com/feeds/api/playlists/PL9343587B2BB7A6CD?v=2&alt=json&callback=?';
-  // var vids = new Array();
-  //
-  // $.getJSON(playListURL, function(data) {
-  //   $.each(data.feed.entry, function(i, item) {
-  //     vids.push( item['media$group']['yt$videoid']['$t'] );
-  //   });
-  //   console.log( vids );
-  // });
+
 };
 
 function stopVideo() {
   player.stopVideo();
 }
-
-// var playListURL = 'http://gdata.youtube.com/feeds/users/AbrahamLingo/uploads?alt=json&callback=?';
-//
-// var videoURL = 'http://www.youtube.com/watch?v=';
-// $.getJSON(playListURL, function(data) {
-//   var list_data = '';
-//   $.each(data.feed.entry, function(i, item) {
-//     var feedTitle = item.title.$t;
-//     var feedURL = item.link[1].href;
-//     var fragments = feedURL.split('/') ;
-//     var videoID = fragments[fragments.length - 2];
-//     var url = videoURL + videoID;
-//     var thumb = 'http://img.youtube.com/vi/' + videoID + '/hqdefault.jpg';
-//     alert(feedTitle);
-//   });
-// });

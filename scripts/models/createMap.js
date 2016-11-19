@@ -21,6 +21,8 @@
 
     createMap.infoWindow = new google.maps.InfoWindow({map: createMap.map});
 
+    page('/markers');
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         createMap.pos = {
@@ -35,15 +37,12 @@
         createMap.handleLocationError(true, infoWindow, map.getCenter());
       });
     } else {
-  // Browser doesn't support Geolocation
+      console.log('Browser doesnt support Geolocation');
       createMap.handleLocationError(false, infoWindow, map.getCenter());
     }
   };
 
-  // $('#getButton').on('click', updatePositionSong);
-
   createMap.updatePositionSong = function() {
-    // getYT();
     navigator.geolocation.watchPosition(function(position) {
       var currLatitude = position.coords.latitude;
       var currLongitude = position.coords.longitude;
@@ -58,22 +57,6 @@
         map: createMap.map,
         icon: createMap.im
       });
-
-      // if(createMap.allMarkers[0] && createMap.allMarkers[1]) {
-        // x = distance(createMap.currMarker.position.lat(), createMap.currMarker.position.lng(), createMap.allMarkers[0].position.lat(), createMap.allMarkers[0].position.lng());
-        //
-        // y = distance(createMap.currMarker.position.lat(), createMap.currMarker.position.lng(), createMap.allMarkers[1].position.lat(), createMap.allMarkers[1].position.lng());
-
-        // if(createMap.song) {
-        //   if (x < y) {
-        //     createMap.song = false;
-        //     $('iframe').attr('src', 'https://www.youtube.com/embed/J9HKqYP0c-8?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
-        //   } else {
-        //     createMap.song = false;
-        //     $('iframe').attr('src', 'https://www.youtube.com/embed/D70UT2wUnoM?autoplay=1?enablejsapi=1?feature=player_detailpage&playsinline=1');
-        //   }
-        // }
-      // }
 
     },function error(msg){alert('Please enable your GPS position future.');
 
@@ -90,16 +73,6 @@
     'Error: The Geolocation service failed.' :
     'Error: Your browser doesn\'t support geolocation.');
   };
-
-// template for adding songs
-  createMap.markerObj = {};
-
-  for(var i = 0; i < 3; i++ ) { //run this for the length of the song name array
-    createMap.markerObj.songName = 'this song ' + i;
-    var template = Handlebars.compile($('#song-template').text());
-    var renderSongNames = template(createMap.markerObj);
-    $('main').append(renderSongNames);
-  }
 
   module.createMap = createMap;
 })(window);

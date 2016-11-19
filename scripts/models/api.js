@@ -4,17 +4,14 @@ getLatLng = function(zipCode) {
     url:  googleURL,
     method: 'POST',
     success: function(data){
-      console.log(data);
-      // var results = data.results;
-      // var geoResult = results[0];
-      // homeModel.zipResults.push(geoResult.geometry.location.lat);
-      // homeModel.zipResults.push(geoResult.geometry.location.lng);
+      console.log('google api data', data);
     }
   });
 };
 
 getYT = function(){
   $.getJSON('https://www.googleapis.com/youtube/v3/PLzhYNDOu3MSzPJHlvBnkq-oePCDARvb5u?v=2&alt=json&callback=?', function(data) {
+    console.log('json data');
     console.log(data);
   });
 };
