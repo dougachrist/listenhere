@@ -3,6 +3,7 @@
   var addMarkersView = {};
 
   addMarkersView.render = function() {
+    $('.playListView').addClass('notShown');
     $('section.mapView').removeClass('notShown');
     $('main').append('<h1>Add a marker for each song</h1>');
     console.log('songArray');

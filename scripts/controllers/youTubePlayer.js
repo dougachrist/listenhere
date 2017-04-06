@@ -22,8 +22,8 @@ onYouTubeIframeAPIReady = function() {
 
 onPlayerReady = function(event) {
   event.target.cuePlaylist({list:homeView.userPlaylist,
-  listType:'playlist',
-  index:0});
+    listType:'playlist',
+    index:0});
 };
 
 var done = false;
@@ -31,8 +31,7 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.CUED) {
     namesArray(event.target.getPlaylist());
     console.log(event.target.getPlaylist());
-    // console.log(event.target.getPlaylist().length);
-    // console.log(event.target.getVideoData().title);
+
   }
   if (event.data == YT.PlayerState.ENDED && !done) {
     done = true;
