@@ -16,7 +16,8 @@
   createMap.initMap = function() {
     createMap.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 44.4201103, lng: -119.7020492}, // check this
-      zoom: 16
+      zoom: 16,
+      sensor: true
     });
 
     createMap.infoWindow = new google.maps.InfoWindow({map: createMap.map});
