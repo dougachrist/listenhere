@@ -15,10 +15,11 @@
 
   createMap.initMap = function() {
     createMap.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 44.4201103, lng: -119.7020492}, // check this
+      center: {lat: 44.420, lng: -119.700}, // check this
       zoom: 16,
-      sensor: true
+      mapTypeId: 'satellite',
     });
+    createMap.map.setTilt(45);
 
     createMap.infoWindow = new google.maps.InfoWindow({map: createMap.map});
 
