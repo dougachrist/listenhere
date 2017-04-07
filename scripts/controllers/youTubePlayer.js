@@ -52,7 +52,6 @@ function namesArray(data){
         $.getScript(url2).done(function(script, textStatus) {
           console.log('map api finished with status ' + textStatus);
           createMap.initMap();
-          //page('/markers');
         });
       }
     });

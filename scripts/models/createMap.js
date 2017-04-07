@@ -61,6 +61,7 @@
         map: createMap.map,
         icon: createMap.im
       });
+      console.log(distance(currLatitude, currLongitude, createMap.allMarkers[0].currLat, createMap.allMarkers[0].currLng, 'M'));      //if(distance(currLatitude, currLongitude,m2,ms) < 25)
 
     },function error(msg){alert('Please enable your GPS position future.');
 
