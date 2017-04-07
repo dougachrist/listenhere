@@ -31,6 +31,8 @@
           lng: position.coords.longitude
         };
         createMap.map.setCenter(createMap.pos);
+        createMap.infoWindow.setPosition(createMap.pos);
+        createMap.infoWindow.setContent('Location Found');
         if(createMap.song){
           createMap.updatePositionSong();
         }
