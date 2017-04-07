@@ -48,7 +48,7 @@ function namesArray(data){
     }).done(function(){
       if(songsArray.length === data.length){
         console.log(songsArray);
-        var url2 = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&callback=createMap.initMap';
+        var url2 = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&signed_in=false&callback=createMap.initMap';
         $.getScript(url2, function(){
           console.log('map api running');
         });
