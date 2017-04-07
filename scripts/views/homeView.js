@@ -9,6 +9,7 @@
     $('main').append('<input class="playListView" id="playlistEntered" type="text" value="PL9343587B2BB7A6CD">');
     $('main').append('<button class="playListView">Continue</button>');
     $('button').on('click', function(){
+      page('/markers');
       homeView.userPlaylist = $('#playlistEntered').prop('value');
       var url = 'https://www.youtube.com/iframe_api';
       $.getScript(url, function(){

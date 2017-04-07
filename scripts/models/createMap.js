@@ -14,23 +14,23 @@
   createMap.song = true;
 
   createMap.initMap = function() {
+    console.log('Google Maps API version: ' + google.maps.version);
     createMap.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 44.420, lng: -119.700}, // check this
       zoom: 16,
       mapTypeId: 'satellite',
     });
-    createMap.map.setTilt(45);
 
     createMap.infoWindow = new google.maps.InfoWindow({map: createMap.map});
-
-    page('/markers');
-
+    console.log('infoWindow loading');
     if (navigator.geolocation) {
+      console.log('geo local loading');
       navigator.geolocation.getCurrentPosition(function(position) {
         createMap.pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        console.log('set the center of map');
         createMap.map.setCenter(createMap.pos);
         createMap.infoWindow.setPosition(createMap.pos);
         createMap.infoWindow.setContent('Location Found');
@@ -38,11 +38,11 @@
           createMap.updatePositionSong();
         }
       }, function() {
-        createMap.handleLocationError(true, infoWindow, map.getCenter());
+        createMap.handleLocationError(true, createMap.infoWindow, createMap.map.getCenter());
       });
     } else {
       console.log('Browser doesnt support Geolocation');
-      createMap.handleLocationError(false, infoWindow, map.getCenter());
+      createMap.handleLocationError(false, createMap.infoWindow, createMap.map.getCenter());
     }
   };
 

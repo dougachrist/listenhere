@@ -48,11 +48,12 @@ function namesArray(data){
     }).done(function(){
       if(songsArray.length === data.length){
         console.log(songsArray);
-        var url2 = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs&signed_in=false&callback=createMap.initMap';
-        $.getScript(url2, function(){
-          console.log('map api running');
+        var url2 = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWXPquA0_hNSNjmW9Y5Bbee4CuL3iowxs';
+        $.getScript(url2).done(function(script, textStatus) {
+          console.log('map api finished with status ' + textStatus);
+          createMap.initMap();
+          //page('/markers');
         });
-        // page('/markers');
       }
     });
   });
