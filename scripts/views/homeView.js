@@ -10,7 +10,7 @@
     $('main').append('<button class="playListView">Continue</button>');
     $('button').on('click', function(){
       homeView.userPlaylist = $('#playlistEntered').prop('value');
-      var url = 'https://www.youtube.com/iframe_api';
+      var url = 'http://www.youtube.com/iframe_api';
       $.getScript(url, function(){
         console.log('api running');
       }).done(function(){
