@@ -61,8 +61,10 @@
         map: createMap.map,
         icon: createMap.im
       });
-      console.log(distance(currLatitude, currLongitude, createMap.allMarkers[0].currLat, createMap.allMarkers[0].currLng, 'M'));      //if(distance(currLatitude, currLongitude,m2,ms) < 25)
-
+      console.log(distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280);
+      if((distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280) < 250){
+        player.playVideoAt(3);
+      }
     },function error(msg){alert('Please enable your GPS position future.');
 
     }, {maximumAge:0, timeout:Infinity, enableHighAccuracy: true});
