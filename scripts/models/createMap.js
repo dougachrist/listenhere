@@ -45,7 +45,7 @@
       createMap.handleLocationError(false, createMap.infoWindow, createMap.map.getCenter());
     }
   };
-
+  var nowPlaying = 0;
   createMap.updatePositionSong = function() {
     navigator.geolocation.watchPosition(function(position) {
       var currLatitude = position.coords.latitude;
@@ -62,7 +62,9 @@
         icon: createMap.im
       });
       console.log(distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280);
-      if((distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280) < 250){
+      if(((distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280) < 250) && (nowPlaying != 3)){
+        console.log(nowPlaying);
+        nowPlaying = 3;
         player.playVideoAt(3);
       }
     },function error(msg){alert('Please enable your GPS position future.');
