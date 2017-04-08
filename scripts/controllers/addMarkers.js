@@ -14,7 +14,8 @@
         label: (createMap.markerCount + 1).toString(),
         store_id: createMap.markerCount,
         currLat: location.lat(),
-        currLng: location.lng()
+        currLng: location.lng(),
+        distanceTo: 300 //placeholder value
       });
       createMap.allMarkers.push(createMap.marker);
       createMap.marker.setMap(createMap.map);

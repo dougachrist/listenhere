@@ -5,8 +5,8 @@ onYouTubeIframeAPIReady = function() {
     width: 600,
     height: 400,
     playerVars: {
-      autoplay: 0,
-      controls: 0,
+      autoplay: 1,
+      controls: 1,
       rel: 0,
       modestbranding: 1,
       html: 5,

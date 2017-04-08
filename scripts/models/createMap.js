@@ -7,11 +7,13 @@
   createMap.im = '/img/bluecircle.png';
   createMap.markerCount = 0;
   createMap.allMarkers = [];
+  createMap.rankingArray = [];
   createMap.currMarker = {};
   createMap.marker;
   createMap.x;
   createMap.y;
   createMap.song = true;
+  createMap.NextSongIndex;
 
   createMap.initMap = function() {
     console.log('Google Maps API version: ' + google.maps.version);
@@ -45,7 +47,7 @@
       createMap.handleLocationError(false, createMap.infoWindow, createMap.map.getCenter());
     }
   };
-  var nowPlaying = 0;
+  var nowPlayingSongIndex = 0;
   createMap.updatePositionSong = function() {
     navigator.geolocation.watchPosition(function(position) {
       var currLatitude = position.coords.latitude;
@@ -61,11 +63,11 @@
         map: createMap.map,
         icon: createMap.im
       });
-      console.log(distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280);
-      if(((distance(currLatitude, currLongitude, createMap.allMarkers[1].currLat, createMap.allMarkers[0].currLng, 'M') * 5280) < 250) && (nowPlaying != 3)){
-        console.log(nowPlaying);
-        nowPlaying = 3;
-        player.playVideoAt(3);
+      createMap.updateDistanceToMarkers(currLatitude, currLongitude);
+      if( (nowPlayingSongIndex !== createMap.NextSongIndex) && (createMap.NextSongIndex < 250) ){
+        console.log('now Playing ' + createMap.NextSongIndex);
+        nowPlayingSongIndex = createMap.NextSongIndex;
+        player.playVideoAt(nowPlayingSongIndex);
       }
     },function error(msg){alert('Please enable your GPS position future.');
 
@@ -74,6 +76,21 @@
     google.maps.event.addListener(createMap.map, 'click', function(event) {
       addMarkers.placeMarker(event.latLng);
     });
+  };
+
+  createMap.updateDistanceToMarkers = function(currLatitude, currLongitude) {
+    createMap.allMarkers.forEach(function(element,index){
+      element.distanceTo = distance(currLatitude, currLongitude, element.currLat, element.currLng, 'M') * 5280;
+      createMap.rankingArray.push(element.distanceTo);
+    });
+    console.log(createMap.rankingArray);
+    var lowest = 0;
+    for (var i = 1; i < createMap.rankingArray.length; i++) {
+      if(createMap.rankingArray[i] < createMap.rankingArray[lowest]){
+        lowest = i;
+      }
+    }
+    createMap.NextSongIndex = lowest;
   };
 
   createMap.handleLocationError = function(browserHasGeolocation, infoWindow, pos) {
