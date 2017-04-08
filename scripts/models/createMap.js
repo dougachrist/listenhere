@@ -8,6 +8,7 @@
   createMap.markerCount = 0;
   createMap.allMarkers = [];
   createMap.rankingArray = [];
+  createMap.NextSongDistance;
   createMap.currMarker = {};
   createMap.marker;
   createMap.x;
@@ -90,6 +91,7 @@
         lowest = i;
       }
     }
+    createMap.NextSongDistance = createMap.rankingArray[lowest];
     createMap.NextSongIndex = lowest;
   };
 
