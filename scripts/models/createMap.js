@@ -65,8 +65,8 @@
         icon: createMap.im
       });
       createMap.updateDistanceToMarkers(currLatitude, currLongitude);
-      if( (nowPlayingSongIndex !== createMap.NextSongIndex) && (createMap.NextSongIndex < 250) ){
-        console.log('now Playing ' + createMap.NextSongIndex);
+      if( (nowPlayingSongIndex !== createMap.NextSongIndex) && (createMap.NextSongDistance < 250) ){
+        console.log('now Playing ' + (createMap.NextSongIndex + 1));
         nowPlayingSongIndex = createMap.NextSongIndex;
         player.playVideoAt(nowPlayingSongIndex);
       }
@@ -93,6 +93,7 @@
     }
     createMap.NextSongDistance = createMap.rankingArray[lowest];
     createMap.NextSongIndex = lowest;
+    createMap.rankingArray = [];
   };
 
   createMap.handleLocationError = function(browserHasGeolocation, infoWindow, pos) {
