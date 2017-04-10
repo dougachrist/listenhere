@@ -8,6 +8,7 @@
     $('main').append('<h1 class="playListView">Paste a youTube playlist here!</h1>');
     $('main').append('<input class="playListView" id="playlistEntered" type="text" value="PL9343587B2BB7A6CD">');
     $('main').append('<button class="playListView">Continue</button>');
+    $('main').append('<div class="playlistPreview"></div>');
     $('button').on('click', function(){
       page('/markers');
       homeView.userPlaylist = $('#playlistEntered').prop('value');
